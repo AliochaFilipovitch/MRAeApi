@@ -4,8 +4,6 @@ require 'pdf-reader'
 require 'open-uri'
 require 'json'
 
-class MRAeApiApp < Sinatra::Base
-
 mrae_kk_18 = 'http://www.mrae.developpement-durable.gouv.fr/examen-au-cas-par-cas-et-autres-decisions-r98.html'
 mrae_a_18 = 'http://www.mrae.developpement-durable.gouv.fr/avis-rendus-r97.html'
 
@@ -164,6 +162,8 @@ def data_json_a(data)
   f.puts(data.to_json)
   f.close
 end
+
+class MRAeApiApp < Sinatra::Base
 
 get "/" do
   erb :refresh
