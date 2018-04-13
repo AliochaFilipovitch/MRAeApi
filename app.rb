@@ -1,9 +1,10 @@
-require 'rubygems'
-require 'sinatra'
+require 'sinatra/base'
 require 'watir'
 require 'pdf-reader'
 require 'open-uri'
 require 'json'
+
+class MRAeApiApp < Sinatra::Base
 
 mrae_kk_18 = 'http://www.mrae.developpement-durable.gouv.fr/examen-au-cas-par-cas-et-autres-decisions-r98.html'
 mrae_a_18 = 'http://www.mrae.developpement-durable.gouv.fr/avis-rendus-r97.html'
@@ -184,4 +185,6 @@ end
 
 get '/data_a' do
   File.read('data_a.json')
+end
+
 end
