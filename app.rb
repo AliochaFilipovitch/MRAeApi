@@ -1,4 +1,4 @@
-require 'sinatra/base'
+require 'sinatra'
 require 'watir'
 require 'pdf-reader'
 require 'open-uri'
@@ -163,8 +163,6 @@ def data_json_a(data)
   f.close
 end
 
-class MRAeApiApp < Sinatra::Base
-
 get "/" do
   erb :refresh
 end
@@ -185,6 +183,4 @@ end
 
 get '/data_a' do
   File.read('data_a.json')
-end
-
 end
