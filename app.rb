@@ -3,6 +3,8 @@ require 'watir'
 require 'pdf-reader'
 require 'open-uri'
 require 'json'
+require "sinatra/reloader" if development?
+
 
 mrae_kk_18 = 'http://www.mrae.developpement-durable.gouv.fr/examen-au-cas-par-cas-et-autres-decisions-r98.html'
 mrae_a_18 = 'http://www.mrae.developpement-durable.gouv.fr/avis-rendus-r97.html'
@@ -16,10 +18,14 @@ def text_pages(url, nbr)
 
   list_links = browser.links(class: 'LienTelecharg')
 
+  page = Nokogiri::HTML(open(url))
+
+
+
   delta = list_links.length - nbr
 
   if delta >= 0
-    0.upto delta do |i| 
+    0.upto delta do |i|
 
       resultsdelta << open_link(list_links[i])
 
