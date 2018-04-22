@@ -1,6 +1,9 @@
 source 'https://rubygems.org/'
 
+gem 'nokogiri'
+gem 'pdf-reader'
 gem 'sinatra'
 
-# Use Passenger as app server:
-# gem 'passenger'
+group :development do
+  gem 'sinatra-contrib'
+end

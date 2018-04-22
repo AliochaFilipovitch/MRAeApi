@@ -1,3 +1,3 @@
-require File.absolute_path("app.rb")
+require './app'
 
-run MRAeApiApp
+run Sinatra::Application
