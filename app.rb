@@ -1,32 +1,32 @@
 require 'sinatra'
-require 'watir'
-require 'pdf-reader'
+require "sinatra/reloader" if development?
 require 'open-uri'
 require 'json'
+require 'pdf-reader'
+require 'nokogiri'
+
+require_relative 'helpers/scraper'
 
 mrae_kk_18 = 'http://www.mrae.developpement-durable.gouv.fr/examen-au-cas-par-cas-et-autres-decisions-r98.html'
 mrae_a_18 = 'http://www.mrae.developpement-durable.gouv.fr/avis-rendus-r97.html'
+
 
 def text_pages(url, nbr)
 
   resultsdelta = []
 
-  browser = Watir::Browser.new(:firefox)
-  browser.goto url
-
-  list_links = browser.links(class: 'LienTelecharg')
+  list_links = Scraper.new(url).absolute_urls
 
   delta = list_links.length - nbr
 
   if delta >= 0
-    0.upto delta do |i| 
+    0.upto delta do |i|
 
       resultsdelta << open_link(list_links[i])
 
     end
   end
 
-  browser.close
   p resultsdelta
   if url == 'http://www.mrae.developpement-durable.gouv.fr/examen-au-cas-par-cas-et-autres-decisions-r98.html'
     data_json_kk(resultsdelta)
@@ -37,8 +37,8 @@ def text_pages(url, nbr)
 end
 
 def open_link(link)
-  io = open(link.href)
-  decision_link = link.href
+  io = open(link)
+  decision_link = link
 
   reader = PDF::Reader.new(io)
   decision_title = reader.info[:Title]

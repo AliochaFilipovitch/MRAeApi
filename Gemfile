@@ -1,5 +1,9 @@
 source 'https://rubygems.org/'
 
-gem 'sinatra'
+gem 'nokogiri'
 gem 'pdf-reader'
-gem 'watir'
+gem 'sinatra'
+
+group :development do
+  gem 'sinatra-contrib'
+end
