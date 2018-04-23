@@ -168,12 +168,12 @@ get "/" do
 end
 
 post '/success_kk' do
-	text_pages(mrae_kk_18, 73) #73
+	text_pages(mrae_kk_18, 73) #73 (71+1(0)+1(=0))
 	"L\'API MRAe est à jour !"
 end
 
 post '/success_a' do
-  text_pages(mrae_a_18, 25) #25
+  text_pages(mrae_a_18, 27) #27
   "L\'API MRAe est à jour !"
 end
 
