@@ -15,7 +15,7 @@ class MyApp < Sinatra::Base
     enable :cross_origin
   end
   before do
-    response.headers['Access-Control-Allow-Origin'] = '*'
+    response.headers['Access-Control-Allow-Origin'] = 'https://mrae-map.herokuapp.com'
   end
   
   # routes...
