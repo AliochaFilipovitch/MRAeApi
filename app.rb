@@ -1,4 +1,5 @@
 require 'sinatra'
+require 'sinatra/cross_origin'
 require "sinatra/reloader" if development?
 require 'open-uri'
 require 'json'
@@ -6,6 +7,7 @@ require 'pdf-reader'
 require 'nokogiri'
 
 require_relative 'helpers/scraper'
+require_relative 'helpers/cross_origin'
 
 mrae_kk_18 = 'http://www.mrae.developpement-durable.gouv.fr/examen-au-cas-par-cas-et-autres-decisions-r98.html'
 mrae_a_18 = 'http://www.mrae.developpement-durable.gouv.fr/avis-rendus-r97.html'
