@@ -7,7 +7,25 @@ require 'pdf-reader'
 require 'nokogiri'
 
 require_relative 'helpers/scraper'
-require_relative 'helpers/cross_origin'
+# require_relative 'helpers/cross_origin'
+
+class MyApp < Sinatra::Base
+  set :bind, '0.0.0.0'
+  configure do
+    enable :cross_origin
+  end
+  before do
+    response.headers['Access-Control-Allow-Origin'] = '*'
+  end
+  
+  # routes...
+  options "*" do
+    response.headers["Allow"] = "GET, POST, OPTIONS"
+    response.headers["Access-Control-Allow-Headers"] = "Authorization, Content-Type, Accept, X-User-Email, X-Auth-Token"
+    response.headers["Access-Control-Allow-Origin"] = "*"
+    200
+  end
+end
 
 mrae_kk_18 = 'http://www.mrae.developpement-durable.gouv.fr/examen-au-cas-par-cas-et-autres-decisions-r98.html'
 mrae_a_18 = 'http://www.mrae.developpement-durable.gouv.fr/avis-rendus-r97.html'
